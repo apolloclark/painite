@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # use RVM
-source /etc/profile.d/rvm.sh
-rvm use 2.3.0 --default --install --fuzzy
 export DIRB_WORDLISTS=`locate dirb | grep "/dirb/wordlists$"`
 export SSLYZE_PATH=`which sslyze`
 

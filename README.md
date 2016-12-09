@@ -14,7 +14,7 @@ as a new mineral species, the mineral was named after him.
 docker build --no-cache=true -t apolloclark/painite .
 
 # run the container
-docker run -it apolloclark/painite
+docker run -dit apolloclark/painite
 
 # run the container, with ALL ports exposed
 docker run -it --publish-all=true apolloclark/painite
