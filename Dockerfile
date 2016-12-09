@@ -14,8 +14,5 @@ RUN apt-get -y install kali-linux-top10
 ADD install_gauntlt.sh /root/install_gauntlt.sh
 RUN chmod +x /root/install_gauntlt.sh && \
     /root/install_gauntlt.sh
-    
-# expose ports
-EXPOSE 0-65535
 
 CMD ["/bin/bash"]
