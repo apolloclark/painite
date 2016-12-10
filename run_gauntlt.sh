@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# use RVM
-# source /etc/profile.d/rvm.sh
-export DIRB_WORDLISTS=`locate dirb | grep "/dirb/wordlists$"`
-export SSLYZE_PATH=`which sslyze`
-
 # change focus to the Gauntlt folder
 cd ~/gauntlt/
 

@@ -68,14 +68,17 @@ fi
 # install Go, Heartbleed
 if ! type "Heartbleed" > /dev/null 2>&1; then
     apt-get install -y golang
+    
     export GOPATH=$HOME_FOLDER/go
     export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
     cat << 'EOF' >> $HOME_FOLDER/.bashrc
 
 # configure go pathways
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 EOF
+
     go get github.com/FiloSottile/Heartbleed
 fi
 
@@ -93,9 +96,7 @@ if ! type "dirb" > /dev/null 2>&1; then
     bash ./configure
     make
     ln -s `pwd`/dirb /usr/bin/dirb
-	updatedb
 fi
-export DIRB_WORDLISTS=`locate dirb | grep "/dirb/wordlists$"`
 
 
 # install Garmr, from source
@@ -103,7 +104,6 @@ if ! type "garmr" > /dev/null 2>&1; then
     cd $GAUNTLT_DIR/vendor/Garmr
     mkdir -p /usr/local/lib/python2.7/dist-packages/
     python setup.py install
-	updatedb
 fi
 
 
@@ -111,14 +111,15 @@ fi
 if ! type "arachni" > /dev/null 2>&1; then
     gem install arachni -v 1.0.6
     gem install service_manager
-	updatedb
 fi
 
 
 
 # set the environmental variables
+updatedb
 export SSLYZE_PATH=`which sslyze`
 export SQLMAP_PATH=`which sqlmap`
+export DIRB_WORDLISTS=`locate dirb | grep "/dirb/wordlists$"`
 
 # save environmental variables to .bashrc
 cat << EOF >> $HOME_FOLDER/.bashrc
@@ -132,10 +133,12 @@ EOF
 # chown the environment
 cd $GAUNTLT_DIR
 chown -R `whoami` ./
-updatedb
 
 # start gruyere
-# cd $GAUNTLT_DIR/vendor/gruyere
-# bash ./manual_launch.sh
-# gauntlt
+cd $GAUNTLT_DIR/vendor/gruyere
+bash ./manual_launch.sh
 
+# run gauntlt tests
+cd $GAUNTLT_DIR
+gauntlt
+printenv
