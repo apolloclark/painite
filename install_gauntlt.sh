@@ -26,9 +26,3 @@ apt-get autoremove -y
 updatedb
 
 gem install gauntlt --no-rdoc --no-ri
-
-
-# install Gauntlt, from source
-cd ~
-git clone https://github.com/gauntlt/gauntlt
-git submodule update --init --recursive --force
