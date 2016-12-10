@@ -139,6 +139,6 @@ cd $GAUNTLT_DIR/vendor/gruyere
 bash ./manual_launch.sh
 
 # run gauntlt tests
+printenv
 cd $GAUNTLT_DIR
 gauntlt
-printenv
