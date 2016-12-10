@@ -3,23 +3,6 @@
 # set the installation to be non-interactive
 export DEBIAN_FRONTEND="noninteractive"
 
-# update apt-get
-apt-get update
-apt-get install -y locate
-
-# install Gauntlt
-gem install gauntlt --no-rdoc --no-ri
-cd ~
-git clone https://github.com/gauntlt/gauntlt
-cd gauntlt
-export GAUNTLT_DIR=`pwd`
-git submodule update --init --recursive --force
-
-
-
-
-
-
 # pre-answer some installation questions
 debconf-set-selections <<< 'libc6 libraries/restart-without-asking boolean true'
 debconf-set-selections <<< 'libc6:amd64 libraries/restart-without-asking boolean true'
@@ -40,6 +23,30 @@ apt-get autoremove -y
 
 
 
+
+# install Gauntlt
+# gem install gauntlt --no-rdoc --no-ri
+cd ~
+git clone https://github.com/gauntlt/gauntlt
+cd gauntlt
+export GAUNTLT_DIR=`pwd`
+git submodule update --init --recursive --force
+bundle install --system
+gem build gauntlt.gemspec
+gem install gauntlt-1.0.12.gem
+
+
+
+
+# check for system variables
+if [ -z $HOME_FOLDER ]; then
+    HOME_FOLDER=$HOME
+    echo -e "INFO: setting \$HOME_FOLDER to $HOME";
+fi
+if [ -z $USER_NAME ]; then
+    USER_NAME=`whoami`
+    echo -e "INFO: setting \$USER_NAME to `whoami`";
+fi
 
 # install sslyze
 if ! type "sslyze" > /dev/null 2>&1; then
@@ -108,9 +115,6 @@ if ! type "arachni" > /dev/null 2>&1; then
 fi
 
 
-# start gruyere
-cd $GAUNTLT_DIR/vendor/gruyere
-bash ./manual_launch.sh
 
 # set the environmental variables
 export SSLYZE_PATH=`which sslyze`
@@ -129,3 +133,9 @@ EOF
 cd $GAUNTLT_DIR
 chown -R `whoami` ./
 updatedb
+
+# start gruyere
+# cd $GAUNTLT_DIR/vendor/gruyere
+# bash ./manual_launch.sh
+# gauntlt
+

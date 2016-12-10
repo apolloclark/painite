@@ -17,4 +17,4 @@ RUN chmod +x /root/run_gauntlt.sh && \
     
 RUN /root/install_gauntlt.sh
 
-CMD ["/bin/bash"]
+CMD ["/bin/bash", "-l"]
