@@ -1,5 +1,8 @@
 # Painite
 
+This build uses the pre-packaged Gauntlt ruby gem, and the natively installed
+ruby 2.3.3 within Kali Linux.
+
 Painite is a combination of Kali Linux + Gauntlt, in a Docker Container, for
 use in a Jenkins pipeline, for Continuous Integration and Continuous Deployment
 pipeline security scanning.

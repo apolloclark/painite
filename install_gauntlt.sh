@@ -25,10 +25,10 @@ apt-get install --yes --allow-downgrades \
 apt-get autoremove -y
 updatedb
 
+gem install gauntlt --no-rdoc --no-ri
+
 
 # install Gauntlt, from source
 cd ~
 git clone https://github.com/gauntlt/gauntlt
-cd gauntlt
-bundle install --system #update
-exit 0;
+git submodule update --init --recursive --force
