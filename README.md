@@ -19,6 +19,14 @@ docker build --force-rm --no-cache=true -t apolloclark/painite .
 # run the container
 docker run -it apolloclark/painite
 
+# run Gauntlt attacks
+/root/run_gauntlt.sh
+
+
+
+
+
+
 # run the container, with ALL ports exposed
 docker run -it --publish-all=true apolloclark/painite
     OR
